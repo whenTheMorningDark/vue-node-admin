@@ -1,5 +1,5 @@
-var mysql = require('mysql')
-var connection = mysql.createConnection({
+let mysql = require('mysql')
+let connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
@@ -7,9 +7,4 @@ var connection = mysql.createConnection({
 })
 
 connection.connect()
-// console.log(connection.query)
 module.exports = connection
-// connection.query('SELECT 1 + 1 AS solution', function(error, results, fields) {
-//   if (error) throw error
-//   console.log('The solution is: ', results[0].solution)
-// })
