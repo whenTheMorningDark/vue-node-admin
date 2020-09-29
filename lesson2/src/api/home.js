@@ -1,7 +1,8 @@
-import request from '@/utils/request'
-export function getHomeData() {
+/* eslint-disable require-jsdoc */
+import request from "@/utils/request";
+export function getMenuData() {
   return request({
-    url: '/api/homeData',
-    method: 'get',
-  })
+    url: "/api/menu",
+    method: "get",
+  });
 }

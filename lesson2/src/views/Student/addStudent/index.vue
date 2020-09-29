@@ -1,21 +1,18 @@
 <template>
-  <div class="home z-h-100">
-    <el-button @click="clickFun">a</el-button>
+  <div>add
+
+    <el-button @click="clickFun">home</el-button>
     <el-button @click="clickFun1">b</el-button>
   </div>
 </template>
 
 <script>
-// import { getMenuData } from "@/api/home";
 export default {
-  name: "home",
-  created () {
-    // this.getMenuDataFun();
-  },
+  name: "addStudent",
   methods: {
     clickFun () {
       this.$router.push({
-        path: "/Student/addStudent"
+        path: "/home"
       });
     },
     clickFun1 () {
@@ -27,4 +24,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>

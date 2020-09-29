@@ -1,17 +1,14 @@
 <template>
-  <div class="home z-h-100">
+  <div>
+    error
     <el-button @click="clickFun">a</el-button>
     <el-button @click="clickFun1">b</el-button>
   </div>
 </template>
 
 <script>
-// import { getMenuData } from "@/api/home";
 export default {
-  name: "home",
-  created () {
-    // this.getMenuDataFun();
-  },
+  name: "error",
   methods: {
     clickFun () {
       this.$router.push({
@@ -27,4 +24,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>
