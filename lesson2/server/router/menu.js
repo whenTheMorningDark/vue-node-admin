@@ -5,7 +5,7 @@ let {
 } = require('../utils/message')
 let data = [{
   name: 'studentManager',
-  path: '/',
+  path: '',
   title: '学生管理',
   pId: 0,
   id: 1,

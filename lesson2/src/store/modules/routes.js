@@ -1,5 +1,8 @@
 /* eslint-disable require-jsdoc */
 import layout from '@/layout/index'
+import {
+  constRouter
+} from '@/router'
 const state = {
   routes: []
 }
@@ -15,7 +18,8 @@ function menuToRoutes(data) {
       meta: {
         title: v.title
       },
-      component: v.path === '/' ? layout : loadView(str)
+      // component: loadView(str)
+      component: v.path === '' ? layout : loadView(str)
     }
     if (v.children && v.children.length > 0) {
       routerJson.children = menuToRoutes(v.children)
@@ -29,7 +33,7 @@ const mutations = {
   setRoutes(state, data) {
     // console.log(menuToRoutes(data));
     let pathMenu = menuToRoutes(data)
-    state.routes = pathMenu
+    state.routes = constRouter.concat(pathMenu)
     console.log(state.routes)
   }
 }

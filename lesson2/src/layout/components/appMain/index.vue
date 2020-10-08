@@ -1,12 +1,31 @@
 <template>
   <div class="app-main">
-    <router-view />
+    <navBar></navBar>
+    <!-- <router-view /> -->
+    <transition name="fade-transform"
+                mode="out-in">
+      <keep-alive>
+        <router-view :key="key" />
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
 <script>
+import navBar from '../navBar'
 export default {
   name: 'appMain',
+  components: {
+    navBar
+  },
+  computed: {
+    // cachedViews () {
+    //   return this.$store.state.tagsView.cachedViews
+    // },
+    key () {
+      return this.$route.path
+    }
+  }
 }
 </script>
 
