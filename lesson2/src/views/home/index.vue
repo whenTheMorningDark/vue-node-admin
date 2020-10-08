@@ -2,29 +2,35 @@
   <div class="home z-h-100">
     <el-button @click="clickFun">a</el-button>
     <el-button @click="clickFun1">b</el-button>
+    {{ user }}
+    {{ user.username }}
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 // import { getMenuData } from "@/api/home";
 export default {
-  name: "home",
-  created () {
+  name: 'index',
+  created() {
     // this.getMenuDataFun();
   },
+  computed: {
+    ...mapGetters(['user']),
+  },
   methods: {
-    clickFun () {
+    clickFun() {
       this.$router.push({
-        path: "/Student/addStudent"
-      });
+        path: '/Student/addStudent',
+      })
     },
-    clickFun1 () {
+    clickFun1() {
       this.$router.push({
-        path: "/Student/delStudent"
-      });
-    }
-  }
-};
+        path: '/Student/delStudent',
+      })
+    },
+  },
+}
 </script>
 
 <style></style>

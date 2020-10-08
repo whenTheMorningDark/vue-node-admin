@@ -3,5 +3,5 @@ const getters = {
   token: state => state.user.token,
   routes: state => state.routes.routes,
   menu: state => state.menu.memu
-};
-export default getters;
+}
+export default getters

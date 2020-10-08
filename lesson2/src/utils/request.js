@@ -1,11 +1,10 @@
 import axios from 'axios'
 import {
-  MessageBox,
   Message
 } from 'element-ui'
 import store from '@/store'
 import {
-  getToken
+  getCookies
 } from '@/utils/user'
 
 const service = axios.create({
@@ -17,7 +16,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     if (store.getters.token) {
-      config.headers['Authorization'] = getToken()
+      config.headers.Authorization = getCookies('token')
     }
     return config
   },
@@ -32,23 +31,24 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
-    // console.log(res)
-    if (res.code === -1) {
+    if (res.code === 10001) {
       Message({
         message: res.message || 'Error',
         type: 'error',
         duration: 5 * 1000
       })
+      store.dispatch('user/setBaseInfo', {})
     }
     return res
   },
   error => {
     console.log('err' + error) // for debug
     Message({
-      message: "网络错误!",
+      message: '网络错误!',
       type: 'error',
       duration: 5 * 1000
     })
+    // store.dispatch('user/setBaseInfo', {})
     return Promise.reject(error)
   }
 )

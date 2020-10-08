@@ -65,10 +65,11 @@ export default {
                 message: res.message || '成功!',
                 type: 'success',
               })
-              let token = res.data.token
-              this.$store.commit('user/setToken', token)
+              // let token = res.data.token
+              console.log(res.data)
+              this.$store.dispatch('user/setBaseInfo', res.data)
               this.$router.push({
-                path: '/home',
+                path: '/',
               })
             }
             this.loading = false

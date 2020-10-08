@@ -1,12 +1,15 @@
-const TokenKey = 'token'
-export function getToken() {
-  return localStorage.getItem(TokenKey)
+/* eslint-disable require-jsdoc */
+import Cookies from 'js-cookie'
+
+
+export function getCookies(key) {
+  return Cookies.get(key)
 }
 
-export function setToken(token) {
-  return localStorage.setItem(TokenKey, token)
+export function setCookies(key, data) {
+  return Cookies.set(key, data)
 }
 
-export function removeToken() {
-  return localStorage.removeItem(TokenKey)
+export function removeCookies(key) {
+  return Cookies.remove(key)
 }
