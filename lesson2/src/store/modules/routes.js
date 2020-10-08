@@ -1,4 +1,5 @@
 /* eslint-disable require-jsdoc */
+import layout from '@/layout/index'
 const state = {
   routes: []
 }
@@ -14,7 +15,7 @@ function menuToRoutes(data) {
       meta: {
         title: v.title
       },
-      component: loadView(str)
+      component: v.path === '/' ? layout : loadView(str)
     }
     if (v.children && v.children.length > 0) {
       routerJson.children = menuToRoutes(v.children)
