@@ -17,6 +17,13 @@ export const constRouter = [{
       title: '首页'
     },
   }]
+}, {
+  path: '/register',
+  name: 'register',
+  component: () => import('@/views/register/index'),
+  meta: {
+    title: '主播孵化平台报名表'
+  },
 }]
 export const constantRoutes = [{
   path: '/',

@@ -8,11 +8,12 @@ import {
   getCookies
 } from '@/utils/user' // get token from cookie
 import store from './store'
-const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
+const whiteList = ['/login', '/auth-redirect', '/register'] // no redirect whitelist
 router.beforeEach(async (to, from, next) => {
 
   const hasToken = getCookies('token')
   console.log(store.getters.user)
+  document.title = to.meta.title
   if (hasToken) {
     if (to.path === '/login') {
       next({
