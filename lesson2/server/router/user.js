@@ -7,18 +7,6 @@ let {
   Success,
   Error
 } = require('../utils/message')
-
-
-// function setToken(rule) {
-//   return new Promise(resolve => {
-//     jwt.sign(rule, 'kafei', {
-//       expiresIn: 3600
-//     }, (error, token) => {
-//       console.log(error)
-//       resolve(token)
-//     })
-//   })
-// }
 router.post('/user', (req, res, next) => {
   let {
     username,
@@ -60,4 +48,29 @@ router.post('/user', (req, res, next) => {
     }
   )
 })
+
+router.post('/register', (req, res) => {
+  let addSql = 'INSERT INTO register(registerUser,registerSex,registerPhone,registerSchool,registerDate,registerIsWork,registerGood) VALUES(?,?,?,?,?,?,?)'
+  let addSqlParams = Object.values(req.body)
+  let searchSql = 'select * from register where registerPhone = ?'
+  let searchParams = [req.body.phone]
+  mysql.query(searchSql, searchParams, (err, result) => {
+    if (err) {
+      res.json(new Error('添加失败!'))
+    }
+    if (result.length > 0) {
+      res.json(new Error('已经报名,请不要重复报名!'))
+    } else {
+      mysql.query(addSql, addSqlParams, (err, resut) => {
+        if (err) {
+          res.json(new Error('添加失败!'))
+        }
+        if (resut.insertId) {
+          res.json(new Success('报名成功!'))
+        }
+      })
+    }
+  })
+})
+
 module.exports = router

@@ -9,7 +9,7 @@
                :active-text-color="variables.menuActiveText"
                :collapse-transition="false"
                mode="vertical">
-        <sidebarItem v-for="route in routes"
+        <sidebarItem v-for="route in cRoutes"
                      :key="route.path"
                      :item="route"
                      :base-path="route.path"></sidebarItem>
@@ -31,7 +31,12 @@ export default {
     variables () {
       return variables
     },
+
     ...mapGetters(['routes']),
+    cRoutes() {
+      console.log(this.routes)
+      return this.routes.filter(v => v.name !== 'register')
+    },
     activeMenu () {
       const route = this.$route
       const { meta, path } = route

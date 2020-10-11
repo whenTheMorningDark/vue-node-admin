@@ -5,6 +5,7 @@ const expressJwt = require('express-jwt')
 const userRouter = require('./router/user.js') //  引入路由
 const homeRouter = require('./router/home.js') //  引入路由
 const menuRouter = require('./router/menu.js') //  引入路由
+const registerManagerRouter = require('./router/registerManager.js') //  引入路由
 const bodyParser = require('body-parser')
 // var passport = require('passport')
 app.use(bodyParser.json())
@@ -22,7 +23,7 @@ app.use(expressJwt({
   secret: 'kafei',
   algorithms: ['HS256']
 }).unless({
-  path: ['/api/user']
+  path: ['/api/user', '/api/register']
 }))
 // 中间件
 app.use((err, req, res, next) => {
@@ -46,6 +47,6 @@ app.use((err, req, res, next) => {
 app.use('/api', userRouter)
 app.use('/api', homeRouter)
 app.use('/api', menuRouter)
-
+app.use('/api', registerManagerRouter)
 
 app.listen(3000)

@@ -2,12 +2,14 @@
   <div class="app-main">
     <navBar></navBar>
     <!-- <router-view /> -->
-    <transition name="fade-transform"
+    <div class="app-main-container">
+      <transition name="fade-transform"
                 mode="out-in">
       <keep-alive>
         <router-view :key="key" />
       </keep-alive>
     </transition>
+    </div>
   </div>
 </template>
 
@@ -32,8 +34,10 @@ export default {
 <style lang="less" scoped>
 .app-main {
   width: calc(100% - 210px);
-  height: 200px;
-  background: red;
+  height: 100%;
   margin-left: 210px;
+  .app-main-container{
+    height: calc(100% - 50px);
+  }
 }
 </style>

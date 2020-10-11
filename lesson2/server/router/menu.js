@@ -4,22 +4,16 @@ let {
   Success
 } = require('../utils/message')
 let data = [{
-  name: 'studentManager',
+  name: 'registerManager',
   path: '',
-  title: '学生管理',
+  title: '报名管理',
   pId: 0,
   id: 1,
   children: [{
-    name: 'addStudent',
-    path: '/Student/addStudent',
-    title: '添加学生',
+    name: 'registerInfo',
+    path: '/registerManager/registerInfo',
+    title: '报名详情',
     id: 2,
-    pId: 1
-  }, {
-    name: 'addStudent',
-    path: '/Student/delStudent',
-    title: '删除学生',
-    id: 3,
     pId: 1
   }]
 }]

@@ -1,9 +1,9 @@
 <template>
-  <div class="z-h-100">
+  <div class="z-h-100" v-loading="loading">
     <van-image width="100%" height="14rem" :src="Bannber" />
     <van-form @submit="onSubmit">
   <van-field
-    v-model="username"
+    v-model="form.username"
     name="姓名"
     label="姓名"
     placeholder="请填写用姓名"
@@ -12,21 +12,21 @@
   />
 <van-field name="radio" label="性别">
   <template #input>
-    <van-radio-group v-model="radio" direction="horizontal">
+    <van-radio-group v-model="form.sex" direction="horizontal">
       <van-radio name="1">男</van-radio>
       <van-radio name="2">女</van-radio>
     </van-radio-group>
   </template>
 </van-field>
  <van-field
-    v-model="phone"
+    v-model="form.phone"
     name="手机号码"
     placeholder="请输入手机号码"
     label="手机号码"
     :rules="[{ pattern, message: '请输入正确手机号码' }]"
   />
   <van-field
-    v-model="scholl"
+    v-model="form.school"
     name="学校"
     label="学校及校区"
     placeholder="请填写学校名称.例如:清华大学"
@@ -38,7 +38,7 @@
   name="datetimePicker"
   label="毕业年份"
   placeholder="点击选择时间"
-  :value="value"
+  :value="form.value"
   @click="showPicker = true"
   :rules="[{ required: true, message: '请填写毕业时间' }]"
 />
@@ -57,7 +57,7 @@
 
 <van-field name="radio" label="是否就业">
   <template #input>
-    <van-radio-group v-model="isWork" direction="horizontal" class="isWork">
+    <van-radio-group v-model="form.isWork" direction="horizontal" class="isWork">
       <van-radio name="1">未就业</van-radio>
       <van-radio name="2">已入职企业</van-radio>
       <van-radio name="3">实习期</van-radio>
@@ -65,7 +65,7 @@
   </template>
 </van-field>
 <van-field
-  v-model="good"
+  v-model="form.good"
   rows="2"
   autosize
   label="擅长领域"
@@ -85,23 +85,28 @@
 
 <script>
 import Bannber from './images/banner.jpg'
+import {register} from '@/api/register'
+import { Dialog } from 'vant'
 export default {
   name: 'register',
   data() {
     return {
-      username: '',
-      radio: '1',
-      phone: '',
-      scholl: '',
+      form: {
+        username: '',
+        sex: '1',
+        phone: '',
+        school: '',
+        value: '',
+        isWork: '1',
+        good: ''
+      },
       pattern: /^1[3456789]\d{9}$/,
       showPicker: false,
       minDate: new Date(2018, 0, 1),
       maxDate: new Date(2025, 10, 1),
       currentDate: new Date(),
-      value: '',
-      isWork: '1',
-      good: '',
-      Bannber
+      Bannber,
+      loading: false
     }
   },
   methods: {
@@ -118,12 +123,18 @@ export default {
       let month = time.getMonth() + 1
       return year + '年' + month + '月'
     },
-    onSubmit(values) {
-      console.log('submit', values)
+    onSubmit() {
+      console.log(this.form)
+      this.loading = true
+      register(this.form).then(res => {
+        console.log(res)
+        this.loading = false
+        Dialog({ message: res.message })
+      })
     },
     onConfirm(time) {
       console.log(time)
-      this.value = this.timeFormat(this.currentDate)
+      this.form.value = this.timeFormat(this.currentDate)
       this.showPicker = false
     },
   },
@@ -131,6 +142,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .van-form{
   width: 100%;
 }
