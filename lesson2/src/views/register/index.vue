@@ -1,5 +1,5 @@
 <template>
-  <div class="z-h-100" v-loading="loading">
+  <div class="z-h-100 register-form" v-loading="loading">
     <van-image width="100%" height="14rem" :src="Bannber" />
     <van-form @submit="onSubmit">
   <van-field
@@ -145,6 +145,9 @@ export default {
 
 .van-form{
   width: 100%;
+}
+.register-form{
+  overflow: scroll;
 }
   .isWork{
     .van-radio{

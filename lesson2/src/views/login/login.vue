@@ -71,6 +71,11 @@ export default {
               this.$router.push({
                 path: '/',
               })
+            } else {
+              this.$message({
+                message: res.message || '失败!',
+                type: 'error',
+              })
             }
             this.loading = false
           })

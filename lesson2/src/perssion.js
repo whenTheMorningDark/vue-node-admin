@@ -12,7 +12,7 @@ const whiteList = ['/login', '/auth-redirect', '/register'] // no redirect white
 router.beforeEach(async (to, from, next) => {
 
   const hasToken = getCookies('token')
-  console.log(store.getters.user)
+  console.log(store.getters.menu)
   document.title = to.meta.title
   if (hasToken) {
     if (to.path === '/login') {
